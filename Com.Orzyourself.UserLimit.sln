@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Com.Orzyourself.UserLimit.I
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Com.Orzyourself.UserLimit.UI", "Com.Orzyourself.UserLimit.UI\Com.Orzyourself.UserLimit.UI.csproj", "{BD911268-8963-44FB-912F-EF9A6828B9B6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Com.Orzyourself.UserLimit.MODEL", "Com.Orzyourself.UserLimit.MODEL\Com.Orzyourself.UserLimit.MODEL.csproj", "{79EDDAEF-1294-4734-9FEF-1C4D5056FD2E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{BD911268-8963-44FB-912F-EF9A6828B9B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BD911268-8963-44FB-912F-EF9A6828B9B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BD911268-8963-44FB-912F-EF9A6828B9B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{79EDDAEF-1294-4734-9FEF-1C4D5056FD2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79EDDAEF-1294-4734-9FEF-1C4D5056FD2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79EDDAEF-1294-4734-9FEF-1C4D5056FD2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79EDDAEF-1294-4734-9FEF-1C4D5056FD2E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
