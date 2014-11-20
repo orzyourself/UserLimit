@@ -5,7 +5,6 @@
 MetadataLoader loader = new MetadataLoader(this);
 CodeRegion region = new CodeRegion(this, 1);
 MetadataTools ef = new MetadataTools(this);
-//获取实体
 string inputFile = @"..\\Com.Orzyourself.UserLimit.MODEL\\UserLimit.edmx";
 
 EdmItemCollection ItemCollection = loader.CreateEdmItemCollection(inputFile);
@@ -13,22 +12,37 @@ string namespaceName = code.VsNamespaceSuggestion();
 
 EntityFrameworkTemplateFileManager fileManager = EntityFrameworkTemplateFileManager.Create(this);
 #>
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Com.Orzyourself.UserLimit.IDAL;
+using Com.Orzyourself.UserLimit.DAL;
 
-//使用TT模板生成代码的片段
-using Com.Orzyourself.UserLimit.MODEL;
-
-namespace Com.Orzyourself.UserLimit.IDAL
+namespace Com.Orzyourself.UserLimit.DALFactory
 {
-
-	//在这里需要一个for循环来遍历数据库中所有的表放置在下面即可，这样就实现了所有的表对应的仓储显示出来了。
-<#
-	//使用foreach循环遍历ItemCollection.GetItems<EntityType>集合
-	foreach(EntityType entity in ItemCollection.GetItems<EntityType>().OrderBy(e=>e.Name))
-	{ #>
-	    public partial interface I<#=entity.Name#>Dal : IBaseDal<<#=entity.Name#>>
+   public  partial  class DbSession:IDbSession
     {
-     
-    }
-
+	<#
+    foreach (EntityType entity in ItemCollection.GetItems<EntityType>().OrderBy(e => e.Name))
+    {    
+   #>	
+   private I<#=entity.Name#>Dal _<#=entity.Name#>Dal;
+		public I<#=entity.Name#>Dal <#=entity.Name#>Dal
+		{
+			get
+			{
+				if (_<#=entity.Name#>Dal == null)
+				{
+					_<#=entity.Name#>Dal = DalFactory.Get<#=entity.Name#>Dal();
+				}
+				return _<#=entity.Name#>Dal;
+			}
+		}
 <#}#>
+
+	}
+
 }
+

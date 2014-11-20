@@ -38,11 +38,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.dll</HintPath>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer">
-      <HintPath>..\packages\EntityFramework.6.1.1\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Net.Http" />
@@ -137,6 +135,32 @@
     <Folder Include="App_Data\" />
     <Folder Include="Controllers\" />
     <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Com.Orzyourself.UserLimit.BLL\Com.Orzyourself.UserLimit.BLL.csproj">
+      <Project>{503b6b2e-6535-4292-9a71-0faa679eac96}</Project>
+      <Name>Com.Orzyourself.UserLimit.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Com.Orzyourself.Userlimit.DALFactory\Com.Orzyourself.Userlimit.DALFactory.csproj">
+      <Project>{3820c602-86dc-44f7-b3bf-4279bfa07177}</Project>
+      <Name>Com.Orzyourself.Userlimit.DALFactory</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Com.Orzyourself.UserLimit.DAL\Com.Orzyourself.UserLimit.DAL.csproj">
+      <Project>{7e32207d-25e3-4969-b88d-97b256c08247}</Project>
+      <Name>Com.Orzyourself.UserLimit.DAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Com.Orzyourself.UserLimit.IBLL\Com.Orzyourself.UserLimit.IBLL.csproj">
+      <Project>{a815580c-0409-48cb-92a8-575230167f71}</Project>
+      <Name>Com.Orzyourself.UserLimit.IBLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Com.Orzyourself.UserLimit.IDAL\Com.Orzyourself.UserLimit.IDAL.csproj">
+      <Project>{8b6639c8-93ae-49e7-bd85-b25c6e5cf1c6}</Project>
+      <Name>Com.Orzyourself.UserLimit.IDAL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Com.Orzyourself.UserLimit.MODEL\Com.Orzyourself.UserLimit.MODEL.csproj">
+      <Project>{79eddaef-1294-4734-9fef-1c4d5056fd2e}</Project>
+      <Name>Com.Orzyourself.UserLimit.MODEL</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
