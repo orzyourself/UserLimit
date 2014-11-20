@@ -42,9 +42,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Com.Orzyourself.Userlimit.DALFactory\Com.Orzyourself.Userlimit.DALFactory.csproj">
+    <ProjectReference Include="..\Com.Orzyourself.Userlimit.DALFactory\Com.Orzyourself.UserLimit.DALFactory.csproj">
       <Project>{3820c602-86dc-44f7-b3bf-4279bfa07177}</Project>
-      <Name>Com.Orzyourself.Userlimit.DALFactory</Name>
+      <Name>Com.Orzyourself.UserLimit.DALFactory</Name>
     </ProjectReference>
     <ProjectReference Include="..\Com.Orzyourself.UserLimit.IDAL\Com.Orzyourself.UserLimit.IDAL.csproj">
       <Project>{8b6639c8-93ae-49e7-bd85-b25c6e5cf1c6}</Project>

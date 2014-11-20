@@ -141,9 +141,9 @@
       <Project>{503b6b2e-6535-4292-9a71-0faa679eac96}</Project>
       <Name>Com.Orzyourself.UserLimit.BLL</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Com.Orzyourself.Userlimit.DALFactory\Com.Orzyourself.Userlimit.DALFactory.csproj">
+    <ProjectReference Include="..\Com.Orzyourself.Userlimit.DALFactory\Com.Orzyourself.UserLimit.DALFactory.csproj">
       <Project>{3820c602-86dc-44f7-b3bf-4279bfa07177}</Project>
-      <Name>Com.Orzyourself.Userlimit.DALFactory</Name>
+      <Name>Com.Orzyourself.UserLimit.DALFactory</Name>
     </ProjectReference>
     <ProjectReference Include="..\Com.Orzyourself.UserLimit.DAL\Com.Orzyourself.UserLimit.DAL.csproj">
       <Project>{7e32207d-25e3-4969-b88d-97b256c08247}</Project>
