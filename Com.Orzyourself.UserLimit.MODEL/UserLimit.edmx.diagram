@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="129848542a55405188788325218375ee" Name="Diagram1" ZoomLevel="99">
+        <EntityTypeShape EntityType="UserLimitModel.BasePermission" Width="1.5" PointX="0.5" PointY="6.25" IsExpanded="false" />
+        <EntityTypeShape EntityType="UserLimitModel.BaseRole" Width="1.5" PointX="0.5" PointY="2.875" IsExpanded="false" />
+        <EntityTypeShape EntityType="UserLimitModel.BaseUser" Width="1.5" PointX="6.375" PointY="2.875" IsExpanded="false" />
+        <EntityTypeShape EntityType="UserLimitModel.R_Role_Permission" Width="1.5" PointX="0.625" PointY="4.375" IsExpanded="false" />
+        <EntityTypeShape EntityType="UserLimitModel.R_User_Permission" Width="1.5" PointX="6.25" PointY="6" IsExpanded="false" />
+        <EntityTypeShape EntityType="UserLimitModel.R_User_Role" Width="1.5" PointX="3.5" PointY="2.875" IsExpanded="false" />
+        <AssociationConnector Association="UserLimitModel.FK_BasePermissionR_Role_Permission" ManuallyRouted="false" />
+        <AssociationConnector Association="UserLimitModel.FK_R_UserInfo_ActionInfoActionInfo" ManuallyRouted="false" />
+        <AssociationConnector Association="UserLimitModel.FK_BaseRoleR_Role_Permission" ManuallyRouted="false" />
+        <AssociationConnector Association="UserLimitModel.FK_RoleR_UserInfo_Role" ManuallyRouted="false" />
+        <AssociationConnector Association="UserLimitModel.FK_UserInfoR_UserInfo_ActionInfo" ManuallyRouted="false" />
+        <AssociationConnector Association="UserLimitModel.FK_UserInfoR_UserInfo_Role" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
