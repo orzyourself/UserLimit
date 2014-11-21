@@ -39,12 +39,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseBll.cs" />
+    <Compile Include="Bll.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Bll.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Com.Orzyourself.Userlimit.DALFactory\Com.Orzyourself.UserLimit.DALFactory.csproj">
       <Project>{3820c602-86dc-44f7-b3bf-4279bfa07177}</Project>
       <Name>Com.Orzyourself.UserLimit.DALFactory</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Com.Orzyourself.UserLimit.IBLL\Com.Orzyourself.UserLimit.IBLL.csproj">
+      <Project>{a815580c-0409-48cb-92a8-575230167f71}</Project>
+      <Name>Com.Orzyourself.UserLimit.IBLL</Name>
     </ProjectReference>
     <ProjectReference Include="..\Com.Orzyourself.UserLimit.IDAL\Com.Orzyourself.UserLimit.IDAL.csproj">
       <Project>{8b6639c8-93ae-49e7-bd85-b25c6e5cf1c6}</Project>
@@ -54,6 +64,15 @@
       <Project>{79eddaef-1294-4734-9fef-1c4d5056fd2e}</Project>
       <Name>Com.Orzyourself.UserLimit.MODEL</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Bll.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>Bll.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
