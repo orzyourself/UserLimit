@@ -1,0 +1,550 @@
+﻿
+@{
+    Layout = null;
+}
+@model Com.Orzyourself.UserLimit.MODEL.BaseUser
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>用户管理</title>
+    <link href="~/Content/themes/default/easyui.css" rel="stylesheet" />
+    <link href="~/Content/themes/icon.css" rel="stylesheet" />
+</head>
+    <body>
+        <!-----------------------EasyUI的DataGird控件的放置----------------------->
+        <div>
+            <!-------------------------------搜索框----------------------------------->
+            <fieldset>
+                <legend>用户详细信息模糊搜索</legend>
+                <div>
+                    @Html.LabelFor(b => b.RealName, "电话：")
+                    @Html.TextBoxFor(b=>b.RealName,new{@style="width:80px"})
+                    &nbsp;&nbsp;&nbsp;
+                    @Html.LabelFor(b => b.Telephone, "电话：")
+                    @Html.TextBoxFor(b=>b.Telephone,new{@style="width:100px"})
+                    &nbsp;&nbsp;&nbsp;
+                    @Html.LabelFor(b => b.Email, "邮箱：")
+                    @Html.TextBoxFor(b=>b.Email,new{@style="width:120px"})
+                    &nbsp;&nbsp;&nbsp;
+                    @Html.LabelFor(b => b.Enabled, "是否职员：")
+                    @Html.DropDownListFor(b => b.Enabled,@ViewData["select"] as IEnumerable<SelectListItem>,new{@style="width:90px",@class="easyui-combobox"})
+                    &nbsp;&nbsp;&nbsp;
+                    @Html.LabelFor(b => b.AuditStatus, "审核状态：")
+                    @Html.DropDownListFor(b => b.AuditStatus, @ViewData["selectAuditSattus"] as IEnumerable<SelectListItem>, new { @style = "width:90px", @class = "easyui-combobox" })
+                    &nbsp;&nbsp;&nbsp;
+                    <a href="javascript:void()" class="easyui-linkbutton" iconcls="icon-search" id="btnSearch">模糊搜索</a>
+                </div>
+            </fieldset> 
+        
+            <!-------------------------------用户详细信息----------------------------------->
+            <table id="test" style="width:940px" title="用户操作" iconcls="icon-edit">
+            
+            </table>
+        </div>
+        
+        <!--------------------------添加用户信息的弹出层---------------------------->
+        <div id="divAddUser" class="easyui-dialog" style="width:580px;height: 435px;padding:10px 20px" closed="true" resizable="true" modal="true" button="#dlg-buttons">
+            <form id="ff" method="post" novalidate="novalidate">
+                <fieldset>
+                    <legend>用户必填信息</legend>
+                    <table id="tblAdd">
+                        <tr>
+                            <td><label for="AddUserName">登录名：</label></td>
+                            <td><input class="easyui-validatebox" type="text" id="AddUserName" name="UserName" data-options="required:true,validType:'length[1,32]'" /></td>
+                            <td><label for="AddRealName">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;真实姓名：</label></td>
+                            <td>
+                                <input class="easyui-validatebox" type="text" id="AddRealName" name="RealName" data-options="required:true,validType:'length[1,200]'" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="AddUserPassword">密码：</label></td>
+                            <td>
+                                <input class="easyui-validatebox" type="text" id="AddUserPassword" name="UserPassword" data-options="required:true,validType:'length[1,200]'" />
+                            </td>
+                            <td><label for="OKUserPassword">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;确认密码：</label></td>
+                            <td>
+                                <input class="easyui-validatebox" type="text" id="OKUserPassword" name="OKUserPassword" data-options="required:true" validtype="equalTo['UserPassword']" invalidmessage="两次输入的密码不匹配" />
+                            </td>
+                        </tr>
+                    </table>
+                </fieldset>
+                <br />
+                <fieldset>
+                    <legend>用户选填信息</legend>
+                    <table id="tblAddChoose">
+                        <tr>
+                            <td><label for="AddEmail">EMail：</label></td>
+                            <td>
+                                <input class="easyui-validatebox" type="text" id="AddEmail" name="Email" data-options="validType:'email'" />
+                            </td>
+                            <td><label for="AddSecurityLevel">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;安全级别：</label></td>
+                            <td>
+                                <select id="AddSecurityLevel" class="easyui-combobox" style="width:154px;" name="AddSecurityLevel" data-options="required:true">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="AddGender">性别：</label></td>
+                            <td>
+                                <input class="easyui-validatebox" type="radio" name="Gender" id="Boy" value="男" checked="checked" />男&nbsp;&nbsp;
+                                <input class="easyui-validatebox" type="radio" name="Gender" id="Girl" value="女" />女&nbsp;&nbsp;
+                                <input class="easyui-validatebox" type="radio" name="Gender" id="No" value="未知" />未知
+                            </td>
+                            <td><label for="AddBirthday">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;出生日期：</label></td>
+                            <td>
+                                <input id="AddBirthday" style="width:154px;" class="easyui-datebox" required="required" name="Birthday" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="AddMobile">手机号码：</label></td>
+                            <td>
+                                <input class="easyui-numberbox" type="text" id="AddMobile" name="Mobile" />
+                            </td>
+                            <td><label for="AddTelephone">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;电话号码：</label></td>
+                            <td>
+                                <input class="easyui-numberbox" type="text" id="AddTelephone" name="Telephone" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="AddQICQ">QQ号码：</label></td>
+                            <td>
+                                <input class="easyui-numberbox" type="text" id="AddQICQ" name="QICQ" />
+                            </td>
+                            <td><label for="AddSortCode">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;排序码：</label></td>
+                            <td>
+                                <input class="easyui-validatebox" type="text" id="AddSortCode" name="SortCode" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="AddDescription">备注信息：</label></td>
+                            <td colspan="3">
+                                <textarea style="height:50px; width:406px;" id="AddDescription" name="Description"></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="4" style="text-align:center; padding-top:10px">
+                                <a href="javascript:void(0)" class="easyui-linkbutton" id="btnRegist" iconcls="icon-ok">确定</a>
+                                <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-cancel" onclick="javascript:$('#divAddUser').dialog('close')">关闭</a>
+                            </td>
+                        </tr>
+                    </table>
+                </fieldset>
+
+            </form>
+            
+
+        </div>
+        
+        <!------------------------弹出用户修改信息的弹出层---------------------------------->
+        <div id="divUpdateUser" class="easyui-dialog" style="width:580px;height:400px;padding:10px 20px"
+             closed="true" resizable="true" modal="true" buttons="#dlg-buttons">
+            <form id="ffUpdate" method="post" novalidate="novalidate">
+                <fieldset>
+                    <legend>用户修改信息</legend>
+                    <table id="tblUpdate">
+                        <tr>
+                            <td><label for="UserName1">登录名：</label></td>
+                            <td>
+                                <input type="hidden" id="ID" name="ID" />
+                                <input class="easyui-validatebox" type="text" id="UserName1" name="UserName" data-options="required:true,validType:'length[1,32]'" />
+                            </td>
+                            <td><label for="RealName1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;真实姓名：</label></td>
+                            <td>
+                                <input class="easyui-validatebox" type="text" id="RealName1" name="RealName" data-options="required:true,validType:'length[1,200]'" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="Email1">EMail：</label></td>
+                            <td>
+                                <input class="easyui-validatebox" type="text" id="Email1" name="Email" data-options="validType:'email'" />
+                            </td>
+                            <td><label for="SecurityLevel1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;安全级别：</label></td>
+                            <td>
+                                <select id="SecurityLevel1" class="easyui-combobox" style="width:154px;" name="SecurityLevel" data-options="required:true">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="Gender">性别：</label></td>
+                            <td>
+                                <input class="easyui-validatebox" type="radio" name="Gender" id="Boy1" value="男" checked="checked" />男&nbsp;&nbsp;
+                                <input class="easyui-validatebox" type="radio" name="Gender" id="Girl1" value="女" />女&nbsp;&nbsp;
+                                <input class="easyui-validatebox" type="radio" name="Gender" id="No1" value="未知" />未知
+                            </td>
+                            <td><label for="Birthday1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;出生日期：</label></td>
+                            <td>
+                                <input id="Birthday1" style="width:154px;" class="easyui-datebox" required="required" name="Birthday" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="Mobile1">手机号码：</label></td>
+                            <td>
+                                <input class="easyui-numberbox" type="text" id="Mobile1" name="Mobile" />
+                            </td>
+                            <td><label for="Telephone1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;电话号码：</label></td>
+                            <td>
+                                <input class="easyui-numberbox" type="text" id="Telephone1" name="Telephone" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="QICQ1">QQ号码：</label></td>
+                            <td>
+                                <input class="easyui-numberbox" type="text" id="QICQ1" name="QICQ" />
+                            </td>
+                            <td><label for="SortCode1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;排序码：</label></td>
+                            <td>
+                                <input class="easyui-validatebox" type="text" id="SortCode1" name="SortCode" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="IsStaff">是否职员：</label></td>
+                            <td>
+                                <select class="easyui-combobox" id="IsStaff" style="width:154px;" name="IsStaff" data-options="required:true">
+                                    <option value="1">是职员</option>
+                                    <option value="0">不是职员</option>
+                                </select>
+                            </td>
+                            <td><label for="IsVisible">是否显示：</label></td>
+                            <td>
+                                <select id="IsVisible" class="easyui-combobox" style="width:154px;" name="IsVisible" data-options="required:true">
+                                    <option value="1">显示</option>
+                                    <option value="0">不显示</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="Enabled">是否有效：</label></td>
+                            <td>
+                                <select class="easyui-combobox" id="Enabled" style="width:154px;" name="Enabled" data-options="required:true">
+                                    <option value="1">有效用户</option>
+                                    <option value="0">无效用户</option>
+                                </select>
+                            </td>
+                            <td><label for="AuditStatus">审核状态：</label></td>
+                            <td>
+                                <select id="AuditStatus" class="easyui-combobox" style="width:154px;" name="AuditStatus" data-options="required:true">
+                                    <option value="已审核">已审核</option>
+                                    <option value="未审核">未审核</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="Description1">备注信息：</label></td>
+                            <td colspan="3">
+                                <textarea style="height:50px; width:406px;" id="Description1" name="Description"></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="4" style="text-align:center; padding-top:10px">
+                                <a href="javascript:void(0)" class="easyui-linkbutton" id="btnUpdate" iconcls="icon-ok">确定</a>
+                                <a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-cancel" onclick="javascript:$('#divUpdateUser').dialog('close')">关闭</a>
+                            </td>
+                        </tr>
+                    </table>
+                </fieldset>
+
+            </form>
+        </div>
+
+        <!------------------------弹出用户浏览信息的弹出层---------------------------------->
+        <div id="divBrowerUser" class="easyui-dialog" style="width:580px;height:430px;padding:10px 20px"
+             closed="true" resizable="true" modal="true" buttons="#dlg-buttons">
+            <form id="ffBrower" method="post" novalidate="novalidate">
+                <fieldset>
+                    <legend>用户浏览信息</legend>
+                    <table id="tblBrower">
+                        <tr>
+                            <td><label for="ID2">用户ID：</label></td>
+                            <td>
+                                <input class="easyui-validatebox" type="text" id="ID2" name="ID" disabled="disabled" />
+                            </td>
+                            <td><label for="UserName1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;登录名：</label></td>
+                            <td>
+                                <input class="easyui-validatebox" type="text" id="UserName2" name="UserName" disabled="disabled" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="RealName1">真实姓名：</label></td>
+                            <td>
+                                <input class="easyui-validatebox" type="text" id="RealName2" name="RealName" disabled="disabled" />
+                            </td>
+                            <td><label for="Email1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EMail：</label></td>
+                            <td>
+                                <input class="easyui-validatebox" type="text" id="Email2" name="Email" disabled="disabled" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="SecurityLevel1">安全级别：</label></td>
+                            <td>
+                                <select id="SecurityLevel2" class="easyui-combobox" style="width:154px;" disabled="disabled" name="SecurityLevel">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                    <option value="6">6</option>
+                                    <option value="7">7</option>
+                                    <option value="8">8</option>
+                                    <option value="9">9</option>
+                                    <option value="10">10</option>
+                                </select>
+                            </td>
+                            <td><label for="Gender">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;性别：</label></td>
+                            <td>
+                                <input class="easyui-validatebox" type="radio" name="Gender" id="Boy2" value="男" checked="checked" />男&nbsp;&nbsp;
+                                <input class="easyui-validatebox" type="radio" name="Gender" id="Girl2" value="女" />女&nbsp;&nbsp;
+                                <input class="easyui-validatebox" type="radio" name="Gender" id="No2" value="未知" />未知
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="Birthday1">出生日期：</label></td>
+                            <td>
+                                <input id="Birthday2" style="width:154px;" disabled="disabled" class="easyui-datebox" name="Birthday" />
+                            </td>
+                            <td><label for="Mobile1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;手机号码：</label></td>
+                            <td>
+                                <input class="easyui-numberbox" type="text" disabled="disabled" id="Mobile2" name="Mobile" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="Telephone1">电话号码：</label></td>
+                            <td>
+                                <input class="easyui-numberbox" type="text" id="Telephone2" disabled="disabled" name="Telephone" />
+                            </td>
+                            <td><label for="QICQ1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;QQ号码：</label></td>
+                            <td>
+                                <input class="easyui-numberbox" type="text" id="QICQ2" aria-disabled="true" name="QICQ" disabled="disabled" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="SortCode1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;排序码：</label></td>
+                            <td>
+                                <input class="easyui-validatebox" type="text" id="SortCode2" disabled="disabled" name="SortCode" />
+                            </td>
+                            <td><label for="IsStaff">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;是否职员：</label></td>
+                            <td>
+                                <select class="easyui-combobox" id="IsStaff2" style="width:154px;" disabled="disabled" name="IsStaff">
+                                    <option value="1">是职员</option>
+                                    <option value="0">不是职员</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="IsVisible">是否显示：</label></td>
+                            <td>
+                                <select id="IsVisible2" class="easyui-combobox" style="width:154px;" disabled="disabled" name="IsVisible">
+                                    <option value="1">显示</option>
+                                    <option value="0">不显示</option>
+                                </select>
+                            </td>
+                            <td><label for="Enabled">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;是否有效：</label></td>
+                            <td>
+                                <select class="easyui-combobox" id="Enabled2" style="width:154px;" name="Enabled" disabled="disabled">
+                                    <option value="1">有效用户</option>
+                                    <option value="0">无效用户</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="AuditStatus">审核状态：</label></td>
+                            <td>
+                                <select id="AuditStatus2" class="easyui-combobox" style="width:154px;" name="AuditStatus" disabled="disabled">
+                                    <option value="已审核">已审核</option>
+                                    <option value="未审核">未审核</option>
+                                </select>
+                            </td>
+                            <td><label for="DeletionStateCode2">删除状态：</label></td>
+                            <td>
+                                <select id="DeletionStateCode2" class="easyui-combobox" style="width:154px;" disabled="disabled" name="DeletionStateCode">
+                                    <option value="0">正常</option>
+                                    <option value="1">伪删除</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="CreateBy2">创建人：</label></td>
+                            <td>
+                                <input class="easyui-validatebox" type="text" id="CreateBy2" name="CreateBy" disabled="disabled" />
+                            </td>
+                            <td><label for="CreateOn2">创建日期：</label></td>
+                            <td>
+                                <input id="CreateOn2" style="width:154px;" disabled="disabled" class="easyui-datebox" name="CreateOn" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="ModifiedBy2">最后修改人：</label></td>
+                            <td>
+                                <input class="easyui-validatebox" type="text" id="ModifiedBy2" name="ModifiedBy" disabled="disabled" />
+                            </td>
+                            <td><label for="ModifirdOn2">最后修改日期：</label></td>
+                            <td>
+                                <input id="ModifirdOn2" style="width:154px;" disabled="disabled" class="easyui-datebox" name="ModifirdOn" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="Description">备注信息：</label></td>
+                            <td colspan="3">
+                                <textarea style="height:50px; width:406px;" id="Description2" disabled="disabled" name="Description"></textarea>
+                            </td>
+                        </tr>
+                    </table>
+                </fieldset>
+
+            </form>
+        </div>
+        
+        <!------------------------设置用户角色信息---------------------------------->
+        <div id="divSetUserRole" class="easyui-dialog" style="width:500px;height:380px;padding:10px 20px" closed="true"
+             resizable="true" modal="true">
+            <iframe id="frameSetRole" src="/welcome.html" scrolling="no" frameborder="0" width="100%" height="100%"></iframe>
+        </div>
+
+        <script src="~/Scripts/datapattern.js"></script>
+        <script src="~/Scripts/jquery.min.js"></script>
+        <script src="~/Scripts/jquery.easyui.min.js"></script>
+        <script src="~/Scripts/easyui-lang-zh_CN.js"></script>
+        <script type="text/javascript">
+            function initTable() {
+                initTable();
+            }
+            //实现对DataGird控件的绑定操作
+            function initTable(queryData) {
+                $("#test").datagrid({//定位到Table标签，Table标签的ID是test
+                    //   UserInfo是控制器，GetAllUserInfos是控制器中获取用户数据的一个Action
+                    url: '/UserInfo/GetAllUserInfos',   //指向后台的Action来获取当前用户的信息的Json格式的数据
+                    title: '用户的展示',  //标识
+                    iconCls: 'icon-save',
+                    height: 368,
+                    nowrap: true,
+                    autoRowHeight: false,
+                    striped: true,
+                    collapsible: true,
+                    pagination: true,
+                    rownumbers: true,
+                    //sortName: 'ID',    //根据某个字段给easyUI排序
+                    sortOrder: 'asc',
+                    remoteSort: false,
+                    idField: 'ID',
+                    queryParams: queryData,  //异步查询的参数
+                    frozenColumns: [[
+	                { field: 'ck', checkbox: true },   //选择
+	                { title: '主键', field: 'ID', width: 40, sortable: true },  //主键
+                    { title: '登录名', field: 'UserName', width: 100, sortable: true },  //登录名
+                    { title: '姓名', field: 'RealName', width: 100, sortable: true },  //用户名
+                    { title: 'E-Email', field: 'Email', width: 150, sortable: true },
+                    { title: '性别', field: 'Gender', width: 50, sortable: true },
+                    { title: '手机', field: 'Mobile', width: 120, sortable: true },
+                    { title: 'QQ号码', field: 'QICQ', width: 100, sortable: true },
+                    { title: '创建人', field: 'CreateBy', width: 90, sortable: true },
+                    { title: '最后修改人', field: 'ModifiedBy', width: 90, sortable: true },
+                    ]],
+                    toolbar: [{
+                        id: 'btnadd',
+                        text: '添加',
+                        iconCls: 'icon-add',
+                        handler: function () {
+                            //实现弹出注册信息的页面
+                            ShowAddUserDialog();
+                        }
+                    }, '-', {
+                        id: 'btncut',
+                        text: '修改',
+                        iconCls: 'icon-cut',
+                        handler: function () {
+                            //实现修改的方法
+                            UpdateUserInfo();
+                        }
+                    }, '-', {
+                        id: 'btnIsNotCancle',
+                        text: '伪删除',
+                        iconCls: 'icon-remove',
+                        handler: function () {
+                            //实现伪删删除的方法
+                            deleteBaseUserInfo("not");
+                        }
+                    }, '-', {
+                        id: 'btnCancle',
+                        text: '直接删除',
+                        iconCls: 'icon-remove',
+                        handler: function () {
+                            //实现直接删除所有数据的方法
+                            deleteBaseUserInfo();
+                        }
+                    }, '-', {
+                        id: 'btnBrowse',
+                        text: '浏览',
+                        iconCls: 'icon-tip',
+                        handler: function () {
+                            //实现浏览的方法
+                            UpdateUserInfo("browse");
+                        }
+                    }, '-', {
+                        id: 'btnRecycle',
+                        text: '回收站',
+                        iconCls: 'icon-sum',
+                        handler: function () {
+                            //实现回收站的方法
+                            RecycleBinShow();
+                        }
+                    }, '-', {
+                        id: 'btnRestore',
+                        text: '还原',
+                        iconCls: 'icon-back',
+                        handler: function () {
+                            //实现还原的方法
+                            deleteBaseUserInfo("back");
+                        }
+                    }, '-', {
+                        id: 'btnreload',
+                        text: '刷新',
+                        iconCls: 'icon-reload',
+                        handler: function () {
+                            //实现刷新栏目中的数据
+                            $("#test").datagrid("reload");
+                        }
+                    }, '-', {
+                        id: 'btnSetRole',
+                        text: '设置角色',
+                        iconCls: 'icon-undo',
+                        handler: function () {
+                            //为用户设置角色
+                            SetUserRole();
+                        }
+                    }, '-', {
+                        id: 'btnSetPermission',
+                        text: '设置用户特殊权限',
+                        iconCls: 'icon-undo',
+                        handler: function () {
+                            //为用户设置角色
+                            SetUserRole();
+                        }
+                    }]
+                });
+            }
+
+            //easyUI 弹出添加用户的对话框
+        </script>
+    </body>
+</html>

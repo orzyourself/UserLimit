@@ -8,10 +8,76 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
+    <title>主页</title>
+    <link href="~/Content/themes/default/easyui.css" rel="stylesheet" />
+    <link href="~/Content/themes/icon.css" rel="stylesheet" />
 </head>
-<body>
-    <div> 
+<body class="easyui-layout">
+
+    @*--------------------------------------网站头部开始（TOP）--------------------------------------*@
+    <div data-options="region:'north',split:true" title="MVC权限系统(Top)" style="height: 90px;">
+        <div class="easyui-layout" data-options="fit:true" style="background: #ccc;">
+            <div id="top" data-options="region:'center'" style="text-align: center;">
+                <h1>ORZ电商后台</h1>
+            </div>
+            <div data-options="region:'east',split:true" style="width: 500px;">
+                <marquee>欢迎管理员<font color="red" size="5">@ViewBag.UserName</font>登录ORZ电商后台管理</marquee>
+                <div style="float: right; padding-right: 30px; font-size: 14px; padding-top: 6px;">
+                    当前时间：<b id="date"></b>  &nbsp;&nbsp <a href="/Login/Index"><b>注销</b></a>
+                </div>
+            </div>
+        </div>
     </div>
-</body>
+    @*--------------------------------------网站头部结束（TOP）--------------------------------------*@
+
+    @*--------------------------------------网站菜单栏开始（Left）--------------------------------------*@
+    <div data-options="region:'west',split:true" title="菜单导航" style="width: 150px; padding: 1px; overflow: hidden;">
+        <div class="easyui-accordion" data-options="fit:true,border:false">
+            <div title="后台权限管理" iconcls="icon-edit" data-options="selected:true" style="padding: 10px; overflow: auto;">
+                @*------存放菜单项-------*@
+                <p><a href="javascript:void(0)" src="/UserInfo/Index" class="MenuLink">用户管理</a></p>
+                <p><a href="javascript:void(0)" src="/Role/Index" class="MenuLink">角色管理</a></p>
+                <p><a href="javascript:void(0)" src="/Permission/Index" class="MenuLink">权限管理</a></p>
+                <p><a href="javascript:void(0)" src="/Group/Index" class="MenuLink">权限组管理</a></p>
+            </div>
+            <div title="网站基本管理" iconcls="icon-edit" style="padding: 10px;">
+                <p><a href="javascript:void(0)">新闻管理</a></p>
+                <p><a href="javascript:void(0)">图片管理</a></p>
+                <p><a href="javascript:void(0)">上传管理</a></p>
+            </div>
+            <div title="网站开发支持" iconcls="icon-edit" style="padding: 10px">
+                content3
+            </div>
+        </div>
+    </div>
+    @*--------------------------------------网站结束（Left）--------------------------------------*@
+
+    @*--------------------------------------网站中间部分开始（Center） 面包屑--------------------------------------*@
+    <div data-options="region:'center'" style="overflow: hidden;">
+        <div id="worktab" fit="true">
+            <div title="权限网站公告" data-options="cache:false">
+                <iframe id="frmWorkArea" width="100%" height="100%" frameborder="0" scrolling="yes" src="~/Welcome.html"></iframe>
+            </div>
+        </div>
+    </div>
+    @*--------------------------------------网站中间部分结束（Center）--------------------------------------*@
+
+    @*--------------------------------------网站右边菜单开始（Right）--------------------------------------*@
+    <div data-options="region:'east',iconCls:'icon-reload',split:true" title="日历信息" style="width: 235px;">
+        <div class="easyui-calendar" style="width: 230px; height: 230px;"></div>
+        <div style="width: 230px">苦心人，天不负，卧薪尝胆，百二秦关今属楚</div>
+    </div>
+    @*--------------------------------------网站右边菜单结束（Right）--------------------------------------*@
+
+    @*--------------------------------------网站头部开始（Foot）--------------------------------------*@
+    <div data-options="region:'south',split:true" title="MVC权限系统(Foot)" style="height: 60px; background: #efefef;">
+        <div class="easyui-layout" data-options="fit:true" style="background: #ccc;">
+            <div data-options="region:'center'" style="text-align: center; padding: 10px;">版权所有： ORZ电商 </div>
+        </div>
+    </div>
+    @*--------------------------------------网站头部结束（Foot）--------------------------------------*@
+        <script src="~/Scripts/jquery.min.js"></script>
+        <script src="~/Scripts/jquery.easyui.min.js"></script>
+        <script src="~/Scripts/easyui-lang-zh_CN.js"></script>
+    </body>
 </html>
