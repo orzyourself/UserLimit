@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IBaseBll.cs" />
+    <Compile Include="IBaseUserBll.cs" />
     <Compile Include="IBll.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -52,6 +53,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Com.Orzyourself.UserLimit.Common\Com.Orzyourself.UserLimit.Common.csproj">
+      <Project>{0b67e45a-7e02-4a6f-8373-541f69a5eaa4}</Project>
+      <Name>Com.Orzyourself.UserLimit.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Com.Orzyourself.UserLimit.MODEL\Com.Orzyourself.UserLimit.MODEL.csproj">
       <Project>{79eddaef-1294-4734-9fef-1c4d5056fd2e}</Project>
       <Name>Com.Orzyourself.UserLimit.MODEL</Name>

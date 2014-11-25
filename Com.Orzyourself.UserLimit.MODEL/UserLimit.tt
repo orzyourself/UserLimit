@@ -23,6 +23,7 @@ foreach (var entity in typeMapper.GetItemsToGenerate<EntityType>(itemCollection)
     fileManager.StartNewFile(entity.Name + ".cs");
     BeginNamespace(code);
 #>
+using Newtonsoft.Json;//添加引用
 <#=codeStringGenerator.UsingDirectives(inHeader: false)#>
 <#=codeStringGenerator.EntityClassOpening(entity)#>
 {
@@ -91,11 +92,12 @@ foreach (var entity in typeMapper.GetItemsToGenerate<EntityType>(itemCollection)
     if (navigationProperties.Any())
     {
 #>
-
+   //导航属性
 <#
         foreach (var navigationProperty in navigationProperties)
         {
 #>
+   [JsonIgnore]
     <#=codeStringGenerator.NavigationProperty(navigationProperty)#>
 <#
         }

@@ -9,6 +9,7 @@
 
 namespace Com.Orzyourself.UserLimit.MODEL
 {
+    using Newtonsoft.Json;//添加引用
     using System;
     using System.Collections.Generic;
     
@@ -38,8 +39,10 @@ namespace Com.Orzyourself.UserLimit.MODEL
         public Nullable<System.DateTime> ModifiedOn { get; set; }
         public string ModifiedUserID { get; set; }
         public string ModifiedBy { get; set; }
-    
+       //导航属性
+       [JsonIgnore]
         public virtual ICollection<R_Role_Permission> R_Role_Permission { get; set; }
+       [JsonIgnore]
         public virtual ICollection<R_User_Permission> R_User_Permission { get; set; }
     }
 }

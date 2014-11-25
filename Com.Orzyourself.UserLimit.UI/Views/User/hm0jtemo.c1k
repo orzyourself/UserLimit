@@ -81,7 +81,7 @@
                                 </td>
                                 <td><label for="AddSecurityLevel">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;安全级别：</label></td>
                                 <td>
-                                    <select id="AddSecurityLevel" class="easyui-combobox" style="width:154px;" name="SecurityLevel" data-options="required:true">
+                                    <select id="AddSecurityLevel" class="easyui-combobox combobox-f combo-f textbox-f" style="width: 154px; display: none;" data-options="required:true" textboxname="AddSecurityLevel" comboname="AddSecurityLevel">
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
@@ -92,7 +92,7 @@
                                         <option value="8">8</option>
                                         <option value="9">9</option>
                                         <option value="10">10</option>
-                                    </select>
+                                    </select><span class="textbox combo" style="width: 152px; height: 20px;"><span class="textbox-addon textbox-addon-right" style="right: 0px;"><a href="javascript:void(0)" class="textbox-icon combo-arrow" icon-index="0" tabindex="-1" style="width: 18px; height: 20px;"></a></span><input type="text" class="textbox-text validatebox-text" autocomplete="off" placeholder="" style="margin-left: 0px; margin-right: 18px; padding-top: 3px; padding-bottom: 3px; width: 126px;"><input type="hidden" class="textbox-value" name="AddSecurityLevel" value="1"></span>
                                 </td>
                             </tr>
                             <tr>
@@ -434,7 +434,7 @@
                 CheckUserName();
 
                 //检查密码和输入密码必须相同
-               // checkPwdAndOKPwdIsEqualTo();
+                checkPwdAndOKPwdIsEqualTo();
 
                 //绑定注册按钮的事件
                 bindRegisteButtonClickEvent();
@@ -465,7 +465,7 @@
                     remoteSort: false,
                     idField: 'ID',
                     queryParams: queryData,  //异步查询的参数
-                    frozenColumns: [
+                    frozenColumns: [[
 	                { field: 'ck', checkbox: true },   //选择
 	                { title: '主键', field: 'ID', width: 40, sortable: true },  //主键
                     { title: '登录名', field: 'UserName', width: 100, sortable: true },  //登录名
@@ -475,8 +475,8 @@
                     { title: '手机', field: 'Mobile', width: 120, sortable: true },
                     { title: 'QQ号码', field: 'QICQ', width: 100, sortable: true },
                     { title: '创建人', field: 'CreateBy', width: 90, sortable: true },
-                    { title: '最后修改人', field: 'ModifiedBy', width: 90, sortable: true }
-                    ],
+                    { title: '最后修改人', field: 'ModifiedBy', width: 90, sortable: true },
+                    ]],
                     toolbar: [{
                         id: 'btnadd',
                         text: '添加',
@@ -814,22 +814,22 @@
 
             //检测注册用户登录名和修改用户名不能重复
             function CheckUserName() {
-                $("#AddUserName").blur(function () {
+                $("#UserName").blur(function () {
                     //得到验证控件的值
-                    var userNameCheck = $("#AddUserName").val();
+                    var UserNameCheck = $("#UserName").val();
                     //发送异步请求去验证用户名不能重复
-                    $.get("/User/CheckUserName", { UserName: userNameCheck }, function (date) {
-                        if (date == "error") {
+                    $.get("/User/CheckUserName", { UserName: UserNameCheck }, function (date) {
+                        if (date == "ok") {
                             alert("该用户已经存在");
-                            $("#AddUserName").val("");
+                            $("#UserName1").val("");
                             return;
                         }
                     });
                 });
                 $("#UserName1").blur(function () {
-                    var userNameCheck = $("#UserName1").val();
-                    $.get("/User/CheckUserName", { UserName: userNameCheck }, function (date) {
-                        if (date == "error") {
+                    var UserNameCheck = $("#UserName1").val();
+                    $.get("/User/CheckUserName", { UserName: UserNameCheck }, function (date) {
+                        if (date == "ok") {
                             alert("该用户已经存在");
                             $("#UserName1").val("");
                             return;

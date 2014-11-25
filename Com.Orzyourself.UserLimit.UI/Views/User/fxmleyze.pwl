@@ -465,7 +465,7 @@
                     remoteSort: false,
                     idField: 'ID',
                     queryParams: queryData,  //异步查询的参数
-                    frozenColumns: [
+                    frozenColumns: [[
 	                { field: 'ck', checkbox: true },   //选择
 	                { title: '主键', field: 'ID', width: 40, sortable: true },  //主键
                     { title: '登录名', field: 'UserName', width: 100, sortable: true },  //登录名
@@ -475,8 +475,8 @@
                     { title: '手机', field: 'Mobile', width: 120, sortable: true },
                     { title: 'QQ号码', field: 'QICQ', width: 100, sortable: true },
                     { title: '创建人', field: 'CreateBy', width: 90, sortable: true },
-                    { title: '最后修改人', field: 'ModifiedBy', width: 90, sortable: true }
-                    ],
+                    { title: '最后修改人', field: 'ModifiedBy', width: 90, sortable: true },
+                    ]],
                     toolbar: [{
                         id: 'btnadd',
                         text: '添加',
@@ -814,14 +814,14 @@
 
             //检测注册用户登录名和修改用户名不能重复
             function CheckUserName() {
-                $("#AddUserName").blur(function () {
+                $("#UserName").blur(function () {
                     //得到验证控件的值
-                    var userNameCheck = $("#AddUserName").val();
+                    var userNameCheck = $("#UserName").val();
                     //发送异步请求去验证用户名不能重复
                     $.get("/User/CheckUserName", { UserName: userNameCheck }, function (date) {
-                        if (date == "error") {
+                        if (date == "ok") {
                             alert("该用户已经存在");
-                            $("#AddUserName").val("");
+                            $("#UserName1").val("");
                             return;
                         }
                     });
@@ -829,7 +829,7 @@
                 $("#UserName1").blur(function () {
                     var userNameCheck = $("#UserName1").val();
                     $.get("/User/CheckUserName", { UserName: userNameCheck }, function (date) {
-                        if (date == "error") {
+                        if (date == "ok") {
                             alert("该用户已经存在");
                             $("#UserName1").val("");
                             return;

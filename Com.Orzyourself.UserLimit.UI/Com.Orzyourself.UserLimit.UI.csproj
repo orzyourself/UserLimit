@@ -47,6 +47,10 @@
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -89,9 +93,6 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.5.0.6\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="System.Net.Http.Formatting">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.0.0\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
@@ -438,6 +439,10 @@
     <ProjectReference Include="..\Com.Orzyourself.UserLimit.BLL\Com.Orzyourself.UserLimit.BLL.csproj">
       <Project>{503b6b2e-6535-4292-9a71-0faa679eac96}</Project>
       <Name>Com.Orzyourself.UserLimit.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Com.Orzyourself.UserLimit.Common\Com.Orzyourself.UserLimit.Common.csproj">
+      <Project>{0b67e45a-7e02-4a6f-8373-541f69a5eaa4}</Project>
+      <Name>Com.Orzyourself.UserLimit.Common</Name>
     </ProjectReference>
     <ProjectReference Include="..\Com.Orzyourself.Userlimit.DALFactory\Com.Orzyourself.UserLimit.DALFactory.csproj">
       <Project>{3820c602-86dc-44f7-b3bf-4279bfa07177}</Project>

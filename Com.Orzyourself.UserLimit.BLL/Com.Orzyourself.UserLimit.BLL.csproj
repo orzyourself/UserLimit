@@ -44,6 +44,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseBll.cs" />
+    <Compile Include="BaseUserBll.cs" />
     <Compile Include="Bll.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -52,6 +53,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Com.Orzyourself.UserLimit.Common\Com.Orzyourself.UserLimit.Common.csproj">
+      <Project>{0b67e45a-7e02-4a6f-8373-541f69a5eaa4}</Project>
+      <Name>Com.Orzyourself.UserLimit.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Com.Orzyourself.Userlimit.DALFactory\Com.Orzyourself.UserLimit.DALFactory.csproj">
       <Project>{3820c602-86dc-44f7-b3bf-4279bfa07177}</Project>
       <Name>Com.Orzyourself.UserLimit.DALFactory</Name>
