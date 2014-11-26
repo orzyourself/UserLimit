@@ -465,7 +465,7 @@
                     remoteSort: false,
                     idField: 'ID',
                     queryParams: queryData,  //异步查询的参数
-                    frozenColumns: [
+                    frozenColumns: [[
 	                { field: 'ck', checkbox: true },   //选择
 	                { title: '主键', field: 'ID', width: 40, sortable: true },  //主键
                     { title: '登录名', field: 'UserName', width: 100, sortable: true },  //登录名
@@ -476,7 +476,7 @@
                     { title: 'QQ号码', field: 'QICQ', width: 100, sortable: true },
                     { title: '创建人', field: 'CreateBy', width: 90, sortable: true },
                     { title: '最后修改人', field: 'ModifiedBy', width: 90, sortable: true }
-                    ],
+                    ]],
                     toolbar: [{
                         id: 'btnadd',
                         text: '添加',

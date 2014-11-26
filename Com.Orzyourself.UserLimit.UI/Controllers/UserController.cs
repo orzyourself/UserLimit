@@ -75,11 +75,15 @@ namespace Com.Orzyourself.UserLimit.UI.Controllers
             //}; 
             #endregion
 
-            var data = _userBll.LoadSearchData(query).Select(u=>new {ID=u.ID,UserName = u.UserName,RealName=u.RealName,Email=u.Email,Gender=u.Gender,Mobile=u.Mobile,QICQ=u.QICQ,CreateBy=u.CreateBy,ModifiedBy=u.ModifiedBy});
+            var data = _userBll.LoadSearchData(query);//.Select(u=>new {ID=u.ID,UserName = u.UserName,RealName=u.RealName,Email=u.Email,Gender=u.Gender,Mobile=u.Mobile,QICQ=u.QICQ,CreateBy=u.CreateBy,ModifiedBy=u.ModifiedBy});
             var result = new {total = query.Total, rows = data};
-            
-            
-            return Json(JsonSerializable.SerializableToString(result),JsonRequestBehavior.AllowGet);
+
+            return Content(JsonSerializable.SerializableToString(result));
+
+           // return Json(JsonSerializable.SerializableToString(result), JsonRequestBehavior.AllowGet);
+            //这种写法是错误的，因为已经用Newtonsoft.Json来序列化result，就没必要再用系统自动的Json()方法返回。
+            //return Json(result,JsonRequestBehavior.AllowGet);
+            //这种也是可以的，但是要防止循环引用。
         }
         /// <summary>
         /// 添加用户信息(其实这些默认的值在数据库里就可以给了，数据库里面不是有那个默认值的约束么)
