@@ -42,7 +42,7 @@ namespace Com.Orzyourself.UserLimit.IDAL
         /// <param name="pageIndex">当前第几页</param>
         /// <param name="pageSize">一页显示多少数据</param>
         /// <param name="total">总条数</param>
-        /// <param name="whereLambda">取得排序的条件</param>
+        /// <param name="whereLambda">筛选条件</param>
         /// <param name="isAse">如何排序，倒叙还是升序</param>
         /// <param name="orderByLambda">根据哪个字段进行排序</param>
         /// <returns></returns>

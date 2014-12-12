@@ -6,14 +6,17 @@ using System.Threading.Tasks;
 
 namespace Com.Orzyourself.UserLimit.Common.Enum
 {
+    /// <summary>
+    /// 伪删除标志
+    /// </summary>
    public enum DeletionStateCodeEnum
     {
         /// <summary>
-        /// 默认伪删除
+        /// 未被删除标志
         /// </summary>
         NoDelete = 0,
         /// <summary>
-        /// 默认删除
+        /// 删除标志
         /// </summary>
         Deleted = 1
     }

@@ -25,5 +25,19 @@ namespace Com.Orzyourself.UserLimit.BLL
              }
              return LoginResult.UserNotExist;
          }
+
+
+        public int DeleteUsers(List<int> deleteIds)
+        {
+            foreach (int deleteId in deleteIds)
+            {
+                _dbSession.BaseUserDal.DeleteEntity(new BaseUser()
+                {
+                    ID = deleteId
+                });
+
+            }
+           return _dbSession.SaveChanges();
+        }
     }
 }

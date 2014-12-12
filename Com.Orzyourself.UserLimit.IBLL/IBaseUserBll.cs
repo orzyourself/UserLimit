@@ -24,5 +24,12 @@ namespace Com.Orzyourself.UserLimit.IBLL
          /// <returns>枚举值</returns>
          LoginResult CheckUserNameExist(string userName);
 
+         /// <summary>
+         /// 批量删除用户或者删除单个用户
+         /// </summary>
+         /// <param name="deleteIds">一个List集合></param>
+         /// <returns>返回影响的行数</returns>
+         int DeleteUsers(List<int> deleteIds);
+
      }
 }

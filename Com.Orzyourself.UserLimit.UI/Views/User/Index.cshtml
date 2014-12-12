@@ -577,21 +577,7 @@
                     if (validate == false) {
                         return false;
                     }
-                    //获取参数传递给前台
-                    //var postData = {
-                    //    UserName: $("#UserName").val(),
-                    //    RealName: $("#RealName").val(),
-                    //    UserPassword: $("#UserPassword").val(),
-                    //    Email: $("#Email").val(),
-                    //    SecurityLevel: $("#SecurityLevel").combobox('getValue'),
-                    //    Gender: $('input[name="Gender"]:checked').val(),
-                    //    Birthday: $("#Birthday").datebox('getValue'),
-                    //    Mobile: $("#Mobile").val(),
-                    //    Telephone: $("#Telephone").val(),
-                    //    QICQ: $("#QICQ").val(),
-                    //    SortCode: $("#SortCode").val(),
-                    //    Description: $("#Description").val()
-                    //};
+                    //通过表单序列化器去封装Json格式的参数
                     var postData = $("#ff").serializeArray();
 
                     //发送异步请求到后台保存用户数据
