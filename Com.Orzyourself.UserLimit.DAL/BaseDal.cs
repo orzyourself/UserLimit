@@ -51,7 +51,7 @@ namespace Com.Orzyourself.UserLimit.DAL
              {
                  temp = temp.OrderBy(orderByLambda)
                      .Skip(pageSize*(pageIndex - 1))
-                     .Take(pageSize*pageIndex);
+                     .Take(pageSize);
              }
              else
              {
